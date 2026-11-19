@@ -8,5 +8,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background;
+    background-image: url(./assets/images/fondo-naruto-espacio.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
+

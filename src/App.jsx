@@ -1,14 +1,26 @@
 import './App.css'
-import Header from './components/Header/Header'
-import Formulario from './components/Formulario/Formulario'
+import { RouterProvider, createBrowserRouter, Outlet, Routes, Route } from 'react-router-dom'
+import StartScreen from './features/startScreen/StartScreen'
 
 function App() {
 
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <StartScreen></StartScreen>                        
+    },
+    {
+      path: 'Explore',
+      element: <StartScreen></StartScreen>
+    },
+    {
+      path: 'Combat',
+      element: <StartScreen></StartScreen>
+    }
+  ])
+
   return (
-    <>
-      <Header></Header>
-      <Formulario></Formulario>
-    </>
+    <RouterProvider router={router}></RouterProvider>
   )
 }
 
