@@ -1,10 +1,12 @@
 import Formulario from './components/Formulario'
-import Header from './components/Header'
+import GameLogo from './components/GameLogo/GameLogo'
+import fondo from './assets/fondo-principal.jpeg'
 
 function StartScreen() {
   return (
     <div>
-        <Header></Header>
+        
+        <GameLogo></GameLogo>
         <Formulario></Formulario>
     </div>
   )
