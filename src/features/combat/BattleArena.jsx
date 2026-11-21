@@ -11,3 +11,19 @@
  * llamado useCombatEngine.js para que este componente solo se encargue de 
  * distribuir el layout del combate y pasar props.
  */
+
+import React from 'react'
+
+function BattleArena() {
+
+  
+
+  return (
+    <div>
+      <ActionMenu></ActionMenu>
+
+    </div>
+  )
+}
+
+export default BattleArena

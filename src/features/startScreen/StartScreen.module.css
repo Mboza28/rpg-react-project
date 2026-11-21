@@ -1,0 +1,318 @@
+/* ==========================================================================
+   1. CONTENEDOR PRINCIPAL (Fondo y Rejilla 3x3)
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+   .screenContainer {
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  background: url('../startScreen/assets/fondo-principal.webp') no-repeat;
+  background-size: cover;
+   /* 3. Mantiene la imagen fija aunque hagas scroll */
+  background-attachment: fixed;
+
+  /* 4. Centra la imagen en ambos ejes al redimensionar */
+  background-position: center center;
+
+  /* 5. Evita que la imagen se repita en mosaico */
+  background-repeat: no-repeat;
+
+  /* 6. Asegura que el contenedor ocupe al menos el 100% del alto de la ventana */
+  min-height: 100vh;
+  margin: 0;
+  
+  /* Sistema de rejilla para ubicar la interfaz alrededor del arte de fondo */
+  display: grid;
+  grid-template-columns: 1fr 34rem 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    "topLeft    .          topRight"
+    ".          centerMenu ."
+    "bottomLeft .          bottomRight";
+  
+  padding: 1.5rem 2.5rem;
+  box-sizing: border-box;
+  font-family: 'Cinzel', 'Trebuchet MS', sans-serif; /* Fuentes de fantasía */
+  color: #fff;
+  user-select: none;
+}
+
+/* ==========================================================================
+   2. DISTRIBUCIÓN DE ÁREAS (CSS Grid)
+   ========================================================================== */
+.centerMenu {
+  grid-area: centerMenu;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  /* Centrado vertical y un ligero desplazamiento hacia abajo para balance visual */
+  transform: translateY(20px); 
+}
+
+.bottomRight {
+  grid-area: bottomRight;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+/* ==========================================================================
+   3. MARCOS DE PIEDRA Y ORO (Componentes del Menú)
+   ========================================================================== */
+/* Contenedor de los 4 botones */
+.menuPanel {
+  width: 100%;
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  position: relative;
+}
+
+/* Base común: placa con esquinas cortadas (octágono alargado) */
+.btn {
+  width: 100%;
+  height: 3.35rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff6dc;
+  text-shadow:
+    0 2px 0 #1b140f,
+    0 0 8px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.14s ease, filter 0.16s ease;
+  /* Corte en las 4 esquinas como en la imagen */
+  clip-path: polygon(
+    14px 0%,
+    calc(100% - 14px) 0%,
+    100% 14px,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    14px 100%,
+    0% calc(100% - 14px),
+    0% 14px
+  );
+}
+
+/* Marco metálico dorado exterior + cuerpo de piedra/color interior */
+.btnDefault {
+  background:
+    linear-gradient(180deg, #574b3e 0%, #372e26 100%) padding-box,
+    linear-gradient(180deg, #e7c273 0%, #8c6628 100%) border-box;
+  border: 3px solid transparent;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 240, 190, 0.25),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.55);
+}
+
+.btnDefault:hover {
+  filter: brightness(1.15);
+  transform: scale(1.02);
+}
+
+.btnDefault:active {
+  transform: scale(0.98);
+}
+
+/* INICIAR JUEGO: núcleo cálido con marco dorado y halo cian/naranja */
+.btnPrimary {
+  background:
+    linear-gradient(180deg, #e27817 0%, #9f4408 100%) padding-box,
+    linear-gradient(180deg, #ffe58f 0%, #d4881e 100%) border-box;
+  border: 3px solid transparent;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 250, 210, 0.45),
+    inset 0 -4px 0 rgba(70, 20, 0, 0.7);
+}
+
+/* Halo mágico exterior en cian/naranja (sin animar box-shadow en bucle) */
+.btnPrimary::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 10px;
+  border: 2px solid rgba(56, 232, 255, 0.85);
+  box-shadow:
+    0 0 12px rgba(56, 232, 255, 0.75),
+    0 0 20px rgba(255, 145, 30, 0.45);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btnPrimary:hover {
+  filter: brightness(1.14);
+  transform: scale(1.03);
+}
+
+.btnPrimary:active {
+  transform: scale(0.98);
+}
+
+/* SALIR DEL JUEGO: tono rojizo/carmesí con borde metálico */
+.btnDanger {
+  background:
+    linear-gradient(180deg, #9f2c2c 0%, #5f1515 100%) padding-box,
+    linear-gradient(180deg, #d99b66 0%, #7d4727 100%) border-box;
+  border: 3px solid transparent;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 190, 170, 0.25),
+    inset 0 -4px 0 rgba(35, 5, 5, 0.7);
+}
+
+.btnDanger:hover {
+  filter: brightness(1.14);
+  transform: scale(1.02);
+}
+
+.btnDanger:active {
+  transform: scale(0.98);
+}
+
+/* Estado deshabilitado (CONTINUAR JUEGO sin partida) */
+.btn:disabled {
+  background:
+    linear-gradient(180deg, #3b3835 0%, #242220 100%) padding-box,
+    linear-gradient(180deg, #6a6258 0%, #3d3832 100%) border-box;
+  border: 3px solid transparent;
+  color: #8c857b;
+  text-shadow: none;
+  filter: saturate(0.35);
+  transform: none;
+  cursor: auto;
+}
+
+/* ==========================================================================
+   5. INTERFAZ DE SOPORTE (Barra superior y widgets)
+   ========================================================================== */
+.topUtility {
+  grid-area: topRight;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.resourceBadge {
+  background: rgba(18, 14, 11, 0.85);
+  border: 2px solid #5a4b3d;
+  border-radius: 20px;
+  padding: 0.35rem 1rem 0.35rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.resourceIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+}
+
+.resourceValue {
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.configBtn {
+  background: linear-gradient(180deg, #52473f 0%, #312821 100%);
+  border: 2px solid #857262;
+  border-radius: 8px;
+  color: #dfd0c4;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 6px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  transition: transform 0.1s, filter 0.15s;
+}
+
+.configBtn:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.configBtn:active {
+  transform: translateY(0);
+}
+
+/* Widget de Equipamiento Activo (Inferior Derecha) */
+.loadoutCard {
+  grid-area: bottomRight;
+  background: linear-gradient(180deg, #3d352e 0%, #241e1a 100%);
+  border: 3px solid #c99b42;
+  border-radius: 12px;
+  padding: 0.75rem 1.25rem 1.25rem;
+  width: 22rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.6);
+}
+
+.loadoutTitle {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #c99b42;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.loadoutItems {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.squareSlot {
+  flex: 1;
+  background: #14110e;
+  border: 2px solid #5a4b3d;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s;
+}
+
+.squareSlot:hover {
+  border-color: #c99b42;
+  transform: translateY(-2px);
+}
+
+.slotImg {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.slotLabel {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: #857262;
+  font-weight: 700;
+}
+
+.slotLabelActive {
+  color: #26c6da; /* Cyan de activo */
+}

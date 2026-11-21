@@ -1,4 +1,3 @@
-import './App.css'
 import { RouterProvider, createBrowserRouter, Outlet, Routes, Route } from 'react-router-dom'
 import StartScreen from './features/startScreen/StartScreen'
 
@@ -8,14 +7,6 @@ function App() {
     {
       path: '/',
       element: <StartScreen></StartScreen>                        
-    },
-    {
-      path: 'Explore',
-      element: <StartScreen></StartScreen>
-    },
-    {
-      path: 'Combat',
-      element: <StartScreen></StartScreen>
     }
   ])
 

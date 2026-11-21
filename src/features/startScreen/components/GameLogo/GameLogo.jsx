@@ -1,13 +1,19 @@
-import './GameLogo.css'
-import logo from '../../assets/logo-principal.png'
+import logoIgnis from '../../assets/logo-principal.png';
 
-
-function GameLogo() {
+export default function GameLogo() {
   return (
-    <div className='contenedor-logo'>
-        <img src={logo} alt='Logo principal de Shinobi Void Chronicles'></img>
-    </div>
-  )
+    <header style={{ pointerEvents: 'none', textAlign: 'center' }}>
+      <img
+        src={logoIgnis}
+        alt="Ignis: Legends of the Wind"
+        style={{
+          width: '100%',
+          maxWidth: '34rem',
+          height: 'auto',
+          display: 'block',
+          filter: 'drop-shadow(0 8px 16px rgba(0, 0, 0, 0.75))',
+        }}
+      />
+    </header>
+  );
 }
-
-export default GameLogo
