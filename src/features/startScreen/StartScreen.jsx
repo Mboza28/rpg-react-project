@@ -6,25 +6,17 @@ import styles from '../../features/startScreen/StartScreen.module.css';
 
 export default function StartScreen({
   activeGuardian,
-  activeShip,
   resources = { gems: 0, crystals: 0 },
   hasSaveData = false,
   onStartNewGame,
   onContinueGame,
-  onOpenGuardians,
-  onOpenShips,
+  onHowToPlay,
   onOpenSettings,
   onExitGame,
 }) {
 
   return (
     <main className={styles.screenContainer}>
-      <div className='styles.animatedWorldLayer' aria-hidden="true">
-        <div className={styles.portalVortex} />
-        <div className={`${styles.waterfallFlow} ${styles.waterfallLeft}`} />
-        <div className={`${styles.waterfallFlow} ${styles.waterfallCenter}`} />
-        <div className={`${styles.waterfallFlow} ${styles.waterfallRight}`} />
-      </div>
       <TopUtilityBar
         gems={resources.gems}
         crystals={resources.crystals}
@@ -39,7 +31,7 @@ export default function StartScreen({
             hasSaveData={hasSaveData}
             onStartNew={onStartNewGame}
             onContinue={onContinueGame}
-            onOpenGuardians={onOpenGuardians}
+            onHowToPlay={onHowToPlay}
             onExit={onExitGame}
           />
         </div>

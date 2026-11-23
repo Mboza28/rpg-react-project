@@ -8,7 +8,7 @@ export default function MainMenu({ hasSaveData = false, onResetNewGame }) {
   const handleStartNew = () => {
     // Si hay lógica previa (ej. reiniciar estado o localStorage), se ejecuta aquí
     if (onResetNewGame) onResetNewGame();
-    navigate('/world-map'); // O '/select-guardian' si quieres que elijan héroe antes de empezar
+    navigate('/select-guardian');
   };
 
   const handleContinue = () => {
@@ -16,13 +16,11 @@ export default function MainMenu({ hasSaveData = false, onResetNewGame }) {
     navigate('/world-map');
   };
 
-  const handleOpenGuardians = () => {
-    navigate('/guardians');
+  const handleHowToPlay = () => {
+    navigate('/how-to-play');
   };
 
   const handleExit = () => {
-    // En aplicaciones web el navegador bloquea window.close() si no se abrió por script,
-    // así que puedes redirigir a una pantalla de créditos/despedida o mostrar un modal
     navigate('/credits');
   };
 
@@ -42,9 +40,9 @@ export default function MainMenu({ hasSaveData = false, onResetNewGame }) {
       />
 
       <MenuButton
-        label="GUARDIANES"
+        label="CÓMO SE JUEGA"
         variant="default"
-        onClick={handleOpenGuardians}
+        onClick={handleHowToPlay}
       />
 
       <MenuButton
